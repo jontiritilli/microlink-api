@@ -11,14 +11,9 @@ import httpStatus from 'http-status'
 import ApiError from './utils/ApiError'
 import { errorConverter, errorHandler } from './middlewares/error'
 import passport from 'passport'
-import { anonymousStrategy, jwtStrategy } from '@/config/passport'
 import swaggerUi from 'swagger-ui-express'
 
 const app = express()
-
-app.use(passport.initialize())
-passport.use(jwtStrategy)
-passport.use(anonymousStrategy)
 
 if (!IS_TEST) {
   app.use(morganSuccessHandler)
