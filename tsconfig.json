@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
     "esModuleInterop": true,
-    "target": "es2018",
+    "target": "esnext",
     "noImplicitAny": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "sourceMap": true,
-    "outDir": "build",
+    "outDir": "./build",
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],

@@ -30,13 +30,13 @@ router.post('/shorten', async (req, res, next) => {
   try {
     const { longUrl } = req.body
 
-    if (!validUrl.isUri(baseUrl)) throw new ApiError(httpStatus.BAD_REQUEST, 'Invalid Url')
+    if (!validUrl.isUri(longUrl)) throw new ApiError(httpStatus.BAD_REQUEST, 'Invalid Url')
 
     const existingUrl = await Url.findOne({ longUrl })
     if (existingUrl) return res.status(200).json(existingUrl)
 
     const urlCode = shortid.generate()
-    const shortUrl = `${baseUrl}/${urlCode}`
+    const shortUrl = `${req.protocol}://${req.get('host')}/url/redirect/${urlCode}`
 
     const urlItem = {
       urlCode,
