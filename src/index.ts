@@ -1,18 +1,9 @@
 import mongoose from 'mongoose'
 import app from './app'
-import { APP_PORT, DB, DB_URI, IS_TEST } from '@/config/config'
 import logger from './config/logger'
 
-let dbURI: string
-if (DB.HOST && DB.NAME && DB.PASSWORD && DB.USER) {
-  dbURI = `mongodb://${DB.USER}:${encodeURIComponent(DB.PASSWORD)}@${DB.HOST}:${DB.PORT}/${DB.NAME}`
-} else {
-  dbURI = DB_URI
-}
-
-if (IS_TEST) {
-  dbURI += '-test'
-}
+const APP_PORT = process.env.APP_PORT || 9000
+let dbURI: string = process.env.DB_URI
 
 const options = {
   useNewUrlParser: true,
